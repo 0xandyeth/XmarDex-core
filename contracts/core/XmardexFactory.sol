@@ -61,6 +61,7 @@ contract XmardexFactory is Ownable, IXmardexFactory {
 
         address _previousFeeTo = feeTo;
         feeTo = _feeTo;
+        emit FeeToUpdated(_previousFeeTo,_feeTo);
     }
 
     //@inheritdoc
@@ -68,8 +69,10 @@ contract XmardexFactory is Ownable, IXmardexFactory {
         require(_feesLp !=0,"XmarDex: ZERO_FEES_LP");
         require(_feesLp + _feesPool <= FEES_MAX, "XmarDex:FEES_MAX");
 
-        _feesLp = feesLp;
-        _feesPool = feesPool;
+        feesLp = _feesLp;
+        feesPool = _feesPool;
+
+        emit FeeChanged(_feesLp,_feesPool);
     }
 
 
